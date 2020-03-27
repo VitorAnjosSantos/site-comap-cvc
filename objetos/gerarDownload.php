@@ -13,7 +13,7 @@ function InputHeaders($FILENAME, $FILEPATH){
 
 if(isset($getParam)){
     $FILENAME = $_GET["file"];
-    $FILEPATH = "D:\{$FILENAME}";
+    $FILEPATH = "D:/".$FILENAME;
     InputHeaders($FILENAME,$FILEPATH);
  };
 

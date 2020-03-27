@@ -10,11 +10,13 @@
 
                $arquivoNome = $fileInfo->getFilename();
 
-               $array = explode('_', $arquivoNome);
+            //    $array = explode('_', $arquivoNome);
 
-               $termo = $_POST["busca"];
+               $termo = $_POST["posto"];
 
-               if (in_array($termo, $array)) {
+               $pos = strpos( $arquivoNome, $termo );
+
+               if ($pos !== false) {
                 echo 'Tag encontrada';
                 ?>
                 <li>
@@ -26,8 +28,6 @@
                <?php
               }
 
-               
-               
            } ?>   
 	</body>
 </html>
