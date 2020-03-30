@@ -23,7 +23,7 @@
                    <?php 
                         echo $arquivoNome;
                    ?>
-                   <a href="<?php echo "./objetos/gerarDownload.php?file=".$arquivoNome;?>">Download</a>
+                   <a href="<?php echo "../objetos/gerarDownload.php?file=".$arquivoNome;?>">Download</a>
                </li>
                <?php
               }

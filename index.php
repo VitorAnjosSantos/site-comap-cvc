@@ -8,7 +8,7 @@
 		<meta charset="utf-8">
 	<head>
 	<body>
-	<form action="./home.php" method="post">
+	<form action="./paginas/home.php" method="post">
 
 		<select name="posto" id="posto">
 			<?php
