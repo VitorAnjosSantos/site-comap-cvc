@@ -51,26 +51,13 @@ session_start();
 
                     <div class="box">
                         <form action="../objetos/novoProjeto.php" method="POST">
+
                             <div class="field">
                                 <div class="control">
                                     <input name="nome" class="input is-large" placeholder="Novo Projeto" autofocus="" type="text">
                                 </div>
                             </div>
-                            <div class="field">
-                                <div class="control">
-                                    <input name="rodovia" class="input is-large" placeholder="Rodovía" autofocus="" type="text">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <input name="km" class="input is-large" placeholder="Km" autofocus="" type="text">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <input name="qtd_postos" class="input is-large" placeholder="Quantidade de postos" autofocus="" type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                                </div>
-                            </div>
+
                             <button type="submit" class="button is-block is-link is-large is-fullwidth">Entrar</button>
                         </form>
                     </div>

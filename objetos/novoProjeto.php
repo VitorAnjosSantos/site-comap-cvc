@@ -1,18 +1,17 @@
 <?php
 session_start();
-include("./conexao.php");
+include("./conexao_usuario.php");
 
 $nome = mysqli_real_escape_string($conexao,$_POST["nome"]);
-$rodovia = mysqli_real_escape_string($conexao,$_POST["rodovia"]);
-$km = mysqli_real_escape_string($conexao,$_POST["km"]);
-$qtd_postos = mysqli_real_escape_string($conexao,$_POST["qtd_postos"]);
 
-$query = "INSERT INTO tb_projetos(nome,rodovia,km,qtd_postos) VALUES('{$nome}','{$rodovia}','{$km}',{$qtd_postos})";
+$query = "INSERT INTO tb_projetos(nome) VALUES('{$nome}')";
 $result = mysqli_query($conexao,$query);
 
 if($result){
+    $id = mysqli_insert_id($conexao); 
+    $_POST["id"] = $id;
     $_SESSION['sucesso'] = true;
-    header('Location: ../paginas/paginaNovoProjeto.php');
+    header('Location: ../paginas/criarConfiProjeto.php');
     exit();
 }else{
     $_SESSION['erro'] = true;
