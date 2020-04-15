@@ -16,14 +16,11 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <style>
-            .form-group{
-                padding: 5px;
-            }
 
             .label{
                 color:black;
             };  
-
+            /* onkeypress='return event.charCode >= 48 && event.charCode <= 57' */
     </style>
     
 </head>
@@ -40,12 +37,14 @@ session_start();
                 <div id="formulario">
                 <button style="margin-bottom: 20px" class="button is-link" type="button" id="add-campo">+ Adicionar Posto </button>
                     
-                    <div class='form-group1' id="div1">
-                        <label class='label' id='1' autofocus='' type='text'>P1 
-                        <input value='1' name='posto[]' placeholder='Km' autofocus='' type='text' style='display: none'>
-                        <input name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'>
-                        <input name='km[]' placeholder='Km' autofocus='' type='text'>
-                        <input name='sentido[]' placeholder='Sentido' autofocus='' type='text' onkeypress='return event.charCode >= 48 && event.charCode <= 57'> 
+                    <div class='form-group0' id="div0">
+                        <label class='label' id='0' autofocus='' type='text'>
+                        <input class='posto[0]' name='posto[]' class='0' placeholder='Posto' autofocus='' type='text'>
+                        <input class='rodovia[0]' name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'>
+                        <input class='km[0]' name='km[]' placeholder='Km' autofocus='' type='text'>
+                        <input class='sentido[0]' name='sentido[]' placeholder='Sentido' autofocus='' type='text' > 
+                        <input class='dataInicio[0]' name='dataInicio[]' placeholder='Data de Inicio' autofocus='' type='text' > 
+                        <input class='dataFim[0]' name='dataFim[]' placeholder='Data Final' autofocus='' type='text' > 
                         <button type='button' id="campo1" class='mais-campos'> + </button>
                     </div>
                                       
@@ -63,22 +62,51 @@ session_start();
 
     <script>
             //https://api.jquery.com/click/
-            var cont = 1;
+            var cont = 0;
+            
         $("#add-campo").click(function () {
             cont++;
            
-            $("#formulario").append("<div class='form-group" + cont + "' id='div" + cont + "'><label class='label' id='"+ cont +"' autofocus='' type='text'>P" + cont + " <input value='"+ cont +"' name='posto[]' placeholder='Km' autofocus='' type='text' style='display: none'> <input name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'>  <input name='km[]'  placeholder='Km' autofocus='' type='text'>"+
-            "  <input name='sentido[]' placeholder='Sentido' autofocus='' type='text' onkeypress='return event.charCode >= 48 && event.charCode <= 57'> <button type='button' id='campo" + cont + "' class='mais-campos'> + </button></label>   </div>"
+            $("#formulario").append("<div class='form-group" + cont + "' id='div" + cont + "'><label class='label' id='"+ cont +"' autofocus='' type='text'><input class='posto["+ cont +"]' id='posto["+ cont +"]' name='posto[]' placeholder='Posto' autofocus='' type='text'> <input class='rodovia["+ cont +"]' id='rodovia["+ cont +"]' name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'>  <input class='km["+ cont +"]' id='km["+ cont +"]' name='km[]'  placeholder='Km' autofocus='' type='text'>"+
+            "  <input class='sentido["+ cont +"]' id='sentido["+ cont +"]' name='sentido[]' placeholder='Sentido' autofocus='' type='text'> <input class='dataInicio["+ cont +"]' id='dataInicio["+ cont +"]' name='dataInicio[]' placeholder='Data de Inicio' autofocus='' type='text' > <input class='dataFim["+ cont +"]' id='dataFim["+ cont +"]' name='dataFim[]' placeholder='Data Final' autofocus='' type='text' > <button type='button' id='campo" + cont + "' class='mais-campos'> + </button></label>   </div>"
             );
             
-
         });
         $('form').on('click', '.mais-campos', function () {
                 var button_id = $(this).parents('div').attr("class");
-                var posto = $(this).parent().attr("id");
-                alert(posto);
-                $("." + button_id).append("<input value='"+ posto +"' name='posto[]' placeholder='Km' autofocus='' type='text' style='display: none'> <input name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'>  <input name='km[]'  placeholder='Km' autofocus='' type='text'>"+
-                "  <input name='sentido[]'  placeholder='Sentido' autofocus='' type='text' onkeypress='return event.charCode >= 48 && event.charCode <= 57'>");
+                var div_id = $(this).parents('div').attr("id");
+                var idNumero = $(this).parent().attr("id");
+
+                var posto = $('.'+button_id).find('input').eq(0);
+                var rodovia = $('.'+button_id).find('input').eq(1);
+                var km = $('.'+button_id).find('input').eq(2);
+                var dataInicio = $('.'+button_id).find('input').eq(4);
+                var dataFim = $('.'+button_id).find('input').eq(5);
+                alert(dataFim.val());
+
+                if(posto.val() == '' || rodovia.val() == '' || km.val() == '' || dataInicio.val() == '' || dataFim.val() == ''){
+                    alert("Preencha todos os campos corretamente");
+                }else{
+                var inputPosto = posto;
+                $(inputPosto).val(posto.val());
+
+                var inputRodovia = rodovia;
+                $(inputRodovia).val(rodovia.val());
+
+                var inputKm = km;
+                $(inputKm).val(km.val());
+
+                var inputDataInicio = dataInicio;
+                $(inputDataInicio).val(dataInicio.val());
+
+                var inputDataFim = dataFim;
+                $(inputDataFim).val(dataFim.val());
+                
+
+                // alert(posto);
+                $("." + button_id).append("<div style='padding-bottom: 10px'> <input value='"+inputPosto.val()+"' name='posto[]' placeholder='Posto' autofocus='' type='text' style='display: none'> <input value='"+inputRodovia.val()+"' style='display: none' name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'>  <input value='"+inputKm.val()+"' style='display: none' name='km[]'  placeholder='Km' autofocus='' type='text'>"+
+                " <input value='"+inputDataInicio.val()+"' name='dataInicio[]' placeholder='Data de Inicio' autofocus='' type='text' style='display: none'> <input style='display: none' value='"+inputDataFim.val()+"' name='dataFim[]' placeholder='Data Final' autofocus='' type='text' > <input name='sentido[]'  placeholder='Sentido' autofocus='' type='text' onkeypress='return event.charCode >= 48 && event.charCode <= 57'></div>");           
+                }
             });
         
         $('#cadastrar').click(function(){

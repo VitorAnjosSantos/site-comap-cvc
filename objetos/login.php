@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("conexao.php");
+include("conexao_usuario.php");
 
 if(empty($_POST["usuario"]) || empty($_POST["senha"])){
     header('Location: ../paginas/paginaLogin.php');
@@ -15,7 +15,7 @@ $result = mysqli_query($conexao,$query);
 
 if($result){
     $_SESSION['sucessoLogin'] = true;
-    header('Location: ../paginas/paginaAdministrador.php');
+    header('Location: ../paginas/paginaNovoProjeto.php');
     exit();
 }else{
     $_SESSION['erroLogin'] = true;

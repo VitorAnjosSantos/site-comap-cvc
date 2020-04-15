@@ -36,17 +36,17 @@ session_start();
                     ?>
                     
                     <?php
-                        if(isset($_SESSION['sucesso'])):
+                        //if(isset($_SESSION['sucesso'])):
                     ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <!-- <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <strong>Sucesso!</strong> Novo projeto criado.
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                        </div>
+                        </div> -->
                     <?php
-                        endif;
-                        unset($_SESSION['sucesso']);
+                        //endif;
+                        //unset($_SESSION['sucesso']);
                     ?>
 
                     <div class="box">

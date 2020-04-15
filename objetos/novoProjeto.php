@@ -9,9 +9,11 @@ $result = mysqli_query($conexao,$query);
 
 if($result){
     $id = mysqli_insert_id($conexao); 
-    $_POST["id"] = $id;
     $_SESSION['sucesso'] = true;
+    $_SESSION['id'] = $id;
+
     header('Location: ../paginas/criarConfiProjeto.php');
+    
     exit();
 }else{
     $_SESSION['erro'] = true;
