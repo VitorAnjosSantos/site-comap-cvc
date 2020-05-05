@@ -15,7 +15,7 @@ $result = mysqli_query($conexao,$query);
 
 if($result){
     $_SESSION['sucessoLogin'] = true;
-    header('Location: ../paginas/paginaNovoProjeto.php');
+    header('Location: ../paginas/home.php');
     exit();
 }else{
     $_SESSION['erroLogin'] = true;
