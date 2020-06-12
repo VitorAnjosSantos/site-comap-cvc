@@ -51,11 +51,10 @@ include_once("../objetos/conexao_usuario.php");
                     <label class="has-text-black" id="msg"></label>
                     <form id="formularioCadastrar" method="POST">
                         <div id="formulario" class="container">
-                            <button style="margin-bottom: 20px" class="button btn-primary" type="button" id="add-campo">+ Adicionar Posto </button>
                             
                             <div class='form-group0' id="div0">
                                 <label class='label' id='0' autofocus='' type='text'>
-                                <button type='button' id="campo1" class='mais-campos distancia button is-success'> + Adicionar Sentido </button></label>
+                                <button type='button' id="campo1" class='mais-campos distancia button is-warning'> + Adicionar Sentido </button></label>
                                 <input class='posto[0] input distancia' name='posto[]' class='0' placeholder='Posto' autofocus='' type='text'>
                                 <input class='dataInicio[0] input distancia' name='dataInicio[]' placeholder='Data Inicial' autofocus='' type='text' > 
                                 <input class='dataFim[0] input distancia' name='dataFim[]' placeholder='Data Final' autofocus='' type='text' >
@@ -65,9 +64,11 @@ include_once("../objetos/conexao_usuario.php");
                             </div>
                                                 
                         </div>
-                        <div class="buttons has-addons is-centered" style="padding-top: 20px;">
+                        <div class="buttons is-centered" style="padding-top: 20px;">
 
-                            <input type="button" class="button btn-primary is-medium" name="cadastrar" id="cadastrar" value="Cadastrar" ></inpu>
+                            <button class="button btn-primary" type="button" id="add-campo">+ Adicionar Posto </button>
+
+                            <input type="button" class="button is-success" name="cadastrar" id="cadastrar" value="Cadastrar" ></inpu>
                         
                         </div>
                     </form>
@@ -103,10 +104,10 @@ include_once("../objetos/conexao_usuario.php");
                 var idNumero = $(this).parent().attr("id");
 
                 var posto = $('.'+button_id).find('input').eq(0);
-                var rodovia = $('.'+button_id).find('input').eq(1);
-                var km = $('.'+button_id).find('input').eq(2);
-                var dataInicio = $('.'+button_id).find('input').eq(4);
-                var dataFim = $('.'+button_id).find('input').eq(5);
+                var rodovia = $('.'+button_id).find('input').eq(3);
+                var km = $('.'+button_id).find('input').eq(4);
+                var dataInicio = $('.'+button_id).find('input').eq(1);
+                var dataFim = $('.'+button_id).find('input').eq(2);
                 
 
                 if(posto.val() == '' || rodovia.val() == '' || km.val() == '' || dataInicio.val() == '' || dataFim.val() == ''){

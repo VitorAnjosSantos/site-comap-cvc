@@ -29,8 +29,8 @@
     <nav class="horizontal-menu type3" style='align-content: center;'>
     
         <ul>
-            <li><h1><a href="#">&nbsp; Cadastros</a></h1></li>
-            <li><h1><a href="../paginas/bancoDados.php">&nbsp; Banco de dados</a></h1></li>
+            <li><h1><a href="#">&nbsp;Cadastros</a></h1></li>
+            <li><h1><a href="../paginas/selecionarProjeto.php">&nbsp;Banco de dados</a></h1></li>
             <hr size = 7>
         </ul>
         

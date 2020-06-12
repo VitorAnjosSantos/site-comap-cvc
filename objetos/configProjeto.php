@@ -12,21 +12,21 @@ $sentido = $_POST["sentido"];
 $dataInicio = $_POST["dataInicio"];
 $dataFim = $_POST["dataFim"];
 
-$array = ['dataInicio' => $dataInicio,'dataFim' => $dataFim,'posto' => $posto, 'rodovia' => $rodovia, 'km' => $km, 'sentido' => $sentido];
+$array = ['rodovia' => $rodovia, 'km' => $km,'posto' => $posto, 'sentido' => $sentido, 'dataInicio' => $dataInicio,'dataFim' => $dataFim];
 
-$res = array_map(null, $array["dataInicio"], $array["dataFim"], $array["posto"], $array["rodovia"], $array["km"], $array["sentido"]);
+$res = array_map(null, $array["rodovia"], $array["km"], $array["posto"], $array["sentido"], $array["dataInicio"], $array["dataFim"]);
 
  $cont = 0;
  $postos= [];
  
  foreach ($res as $key => $value){
         $postos[] = $value;
-        $dataInicio = $postos[$cont][0];
-        $dataFim = $postos[$cont][1];
+        $rodovia = $postos[$cont][0];
+        $km = $postos[$cont][1];
         $posto = $postos[$cont][2];
-        $rodovia = $postos[$cont][3];
-        $km = $postos[$cont][4];
-        $sentido = $postos[$cont][5];
+        $sentido = $postos[$cont][3];
+        $dataInicio = $postos[$cont][4];
+        $dataFim = $postos[$cont][5];
 
         $sql = "INSERT INTO tb_config_projeto (rodovia, km, posto, sentido, dataInicio, dataFim, tb_projetos_id_projeto) 
                     VALUES ('{$rodovia}', '{$km}', '{$posto}', '{$sentido}', '{$dataInicio}', '{$dataFim}',{$id})";

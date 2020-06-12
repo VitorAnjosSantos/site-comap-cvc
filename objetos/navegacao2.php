@@ -33,7 +33,7 @@
     
         <ul class="horizontal-menu type3" style="margin-bottom: 0px;">
             <li><h1><a href="#">Cadastros</a></h1></li>
-            <li><h1><a href="../paginas/bancoDados.php"> Banco de dados</a></h1></li>
+            <li><h1><a href="../paginas/selecionarProjeto.php">Banco de dados</a></h1></li>
             
         </ul>
         <hr style="margin-top: 0px; margin-bottom: 0px;" size = 7>

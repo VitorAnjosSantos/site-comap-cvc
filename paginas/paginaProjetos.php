@@ -29,7 +29,7 @@ $result = mysqli_query($conexao, $sql);
     <section class="hero is-success is-fullheight">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
-                    <h3 class="title has-text-grey">Projetos</h3>
+                    <h3 class="title has-text-black">Projetos</h3>
                     <div class="box">
 
                         <div class="row">
