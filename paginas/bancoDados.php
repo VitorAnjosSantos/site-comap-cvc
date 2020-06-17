@@ -27,13 +27,9 @@ $projeto = $_SESSION['projeto'];
 <body>
     <section class="hero is-success is-fullheight">
             <div class="container has-text-centered">
-                <div class="column is-4 is-offset-4">
-                    <h3 class="title has-text-grey"></h3>
-                    <div class="box">
-
-                    <form id="filtro" method="POST">
-                     <select name="postos" id="postos">
-                        <option value="">Selecione...</option>
+               <form id="filtro" method="POST">
+               <select name="postos" id="postos">
+                        <option value="">Selecione o Posto...</option>
                         <?php
                            $sql = "SELECT DISTINCT posto FROM tb_config_projeto WHERE tb_projetos_id_projeto = {$projeto}";
                            $result = mysqli_query($conexao,$sql);
@@ -45,17 +41,63 @@ $projeto = $_SESSION['projeto'];
                         ?>
                         
                      </select>
+
                      <select name="sentidos" id="sentidos">
-                        <option value="">Selecione...</option>                       
+                        <option value="">Selecione o Sentido...</option>                       
                      </select>
 
-                     <input type="button" class="button is-success" name="filtrar" id="filtrar" value="Filtrar" ></inpu>
+                     <select name="datas" id="datas">
+                        <option value="">Selecione a Data...</option>  
+                        <?php
+                           $sql = "SELECT * FROM tb_veiculos v 
+                           JOIN tb_usuarios u ON v.tb_usuarios_id_usuario = u.id_usuario
+                           JOIN tb_config_projeto c ON u.tb_config_projeto_id_projeto = c.id_config_projeto
+                           WHERE c.tb_projetos_id_projeto = {$projeto}";
 
-                     <span id="teste"></span>
-                     </form>
+                           $result = mysqli_query($conexao,$sql);
+                           $count = 0;
+                           $array = [];
+                           foreach($result as $value){
+                              $contagem = json_decode($value['contagem'], true);
+                              $teste = $contagem;			
+                              var_dump($contagem);
+                              foreach($teste as $key ) 
+                              {
+                                  
+                                 $date = $contagem[0]['date'];
+                                 $dateCorrigida = str_replace("/","-", $date );                              
+                                 $data = $dateCorrigida;
+                                 $array[$count] = $data;
+                              }                              
 
-                    </div>
-                </div>
+                              $count++;
+                           }
+                           $arrayData = array_unique($array);
+                           foreach($arrayData as $value){
+                              echo "<option value='".$value."'>".$value."</option>";
+                           }
+                        ?>
+                     </select>
+
+                     <!-- <select name="sentidos" id="sentidos">
+                        <option value="">Selecione o Pesquisador...</option>                       
+                     </select>
+
+                     <select name="sentidos" id="sentidos">
+                        <option value="">Selecione o Supervisor...</option>                       
+                     </select> -->
+                    
+                     <input style='margin-left: 20px;' type="button" class="button is-success" name="filtrar" id="filtrar" value="Filtrar" >
+
+                     <div class="column is-6 is-offset-3">
+                      <h3 class="title has-text-grey"></h3>
+                        <div class="box">
+                           <div id="teste">
+
+                           </div>
+                        </div>
+                     </div>
+               </form>
             </div>
     </section>
     
@@ -65,7 +107,7 @@ $projeto = $_SESSION['projeto'];
 				if( $(this).val() ) {
 					
 					$.getJSON('../objetos/filtrar.php?search=',{postos: $(this).val(), ajax: 'true'}, function(j){
-						var options = '<option value="">Selecione...</option>';	
+						var options = '<option value="">Selecione o Sentido...</option>';	
 						for (var i = 0; i < j.length; i++) {
 							options += '<option value="' + j[i].id + '">' + j[i].sentido + '</option>';
 						}	
@@ -74,7 +116,7 @@ $projeto = $_SESSION['projeto'];
 						
 					});
 				} else {
-					$('#sentidos').html('<option value="">– Selecione... –</option>');
+					$('#sentidos').html('<option value="">– Selecione o Sentido... –</option>');
 				}
 			});
 		});
@@ -82,20 +124,38 @@ $projeto = $_SESSION['projeto'];
       $('#filtrar').click(function(){
             event.preventDefault();
             var dados = $("#filtro").serialize();
-           /*  $.post("../objetos/listar.php", dados, function (retorna){
+            /*  $.post("../objetos/listar.php", dados, function (retorna){
                $('#teste').html(retorna);
             }); */
+            $('.gerar').parents('a').remove();
+            $('#teste').children('span').remove();
+            $('#teste').children('br').remove();
+
+
             $.ajax({
                url: '../objetos/listar.php',
                type: 'post',
                datatype: 'json',
                data: dados,
                success: function(retorna){
-                  $('#teste').html(retorna);
-                  console.log(retorna);
+                  let id = 1;
+                  for(let i = 0; i < retorna.length; i++){
+                     
+                     $('#teste').append("<br><span>"+retorna[i]+"</span><a href='../objetos/gerarPlanilha.php?id="+id+"'><input style='margin-left: 10px; margin-bottom: 5px; ' name='id["+id+"]' id='id["+id+"]' type='button' class='gerar button is-success' value='Gerar Excel'></a>");
+                     id++;
+                  }
+                  
+                  //console.log(retorna);
                }
             })
       });
+
+      /* $('form').on('click', '.gerar', function () {
+            var dados = $(this).attr("id");
+            $.post("../objetos/gerarPlanilha.php", dados, function (retorna){
+               console.log(retorna);
+            });
+      }); */
 
 	</script>
 </body>
