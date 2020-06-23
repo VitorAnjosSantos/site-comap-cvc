@@ -4,7 +4,13 @@ header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json');
 include("./conexao_usuario.php");
 
-$sql = "SELECT * FROM tb_botoes";
+$id = $_POST['id_formulario'];
+
+$sql = "SELECT * FROM tb_botoes b
+        INNER JOIN tb_formularios f
+        ON b.tb_formularios_id_formulario = f.id_formulario
+        WHERE f.id_formulario = {$id}";
+
 $result = mysqli_query($conexao,$sql);
 $count = 0;
 $json= array();

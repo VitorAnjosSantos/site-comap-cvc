@@ -22,6 +22,7 @@
 
 	$sql = "SELECT * FROM tb_veiculos v 
 			JOIN tb_usuarios u ON v.tb_usuarios_id_usuario = u.id_usuario
+			JOIN tb_config_projeto c ON u.tb_config_projeto_id_projeto = c.id_config_projeto
 			WHERE v.id_veiculo = {$id}";	
 
 	$idDevice = '';
@@ -44,17 +45,21 @@
 		$count2 = 0;
 		$aux = [];
 		$totalVertical = 0;
-		$totalHorizontal = "<td></td><td></td><td></td><td></td><td><b>TOTAL</b></td>";
+		$totalHorizontal = "<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><b>TOTAL</b></td>";
 		$array = [];
 		$auxTotal = [];
 		$formulario = mysqli_fetch_assoc($resultadoDaConsulta);
 
-		$query = "SELECT * FROM tb_botoes WHERE tb_formularios_id_formulario =  {$formulario['tb_formularios_id_formulario']}";
+		$query = "SELECT * FROM tb_botoes WHERE tb_formularios_id_formulario = {$formulario['tb_formularios_id_formulario']}";
 		$resultQuery = mysqli_query($conexao,$query); 
 		$resultadoQuery = $resultQuery; 
 
 		$html .= '<td><b>PESQUISADOR</b></td>';
 		$html .= '<td><b>SUPERVISOR</b></td>';
+		$html .= '<td><b>POSTO</b></td>';
+		$html .= '<td><b>SENTIDO</b></td>';
+		$html .= '<td><b>RODOVIA</b></td>';
+		$html .= '<td><b>KM</b></td>';
 		$html .= '<td><b>LATITUDE</b></td>';
 		$html .= '<td><b>LONGITUDE</b></td>';
 		$html .= '<td><b>DATA</b></td>';
@@ -83,14 +88,18 @@
 					
 					unset($key['latitude'],$key['longitude'],$key['date'],$key['time']);
 
-					$latitude = json_encode($contagem[$count]['latitude']);
-					$longitude = json_encode($contagem[$count]['longitude']);
+					$latitude = $contagem[$count]['latitude'];
+					$longitude = $contagem[$count]['longitude'];
 					$date = $contagem[$count]['date'];
 					$time = $contagem[$count]['time'];
 
 					$html .= '<tr>';
 					$html .= '<td>'.$registro['pesquisador'].'</td>';
 					$html .= '<td>'.$registro['supervisor'].'</td>';
+					$html .= '<td>'.$registro['posto'].'</td>';
+					$html .= '<td>'.$registro['sentido'].'</td>';
+					$html .= '<td>'.$registro['rodovia'].'</td>';
+					$html .= '<td>'.$registro['km'].'</td>';
 					$html .= '<td>'.$latitude.'</td>';
 					$html .= '<td>'.$longitude.'</td>';
 					$html .= '<td>'.$date.'</td>';
