@@ -31,10 +31,10 @@ $projeto = $_SESSION['projeto'];
                <select name="postos" id="postos">
                         <option value="">Selecione o Posto...</option>
                         <?php
-                           $sql = "SELECT DISTINCT posto FROM tb_config_projeto WHERE tb_projetos_id_projeto = {$projeto}";
+                           $sql = "SELECT DISTINCT * FROM tb_config_projeto WHERE tb_projetos_id_projeto = {$projeto} GROUP BY posto";
                            $result = mysqli_query($conexao,$sql);
                            while($rows = mysqli_fetch_assoc($result)){
-                              echo "<option value='".$rows['posto']."'>".$rows['posto']."</option>";
+                              echo "<option value='".$rows['id_config_projeto']."'>".$rows['posto']."</option>";
                               
                            }
                         
@@ -107,13 +107,17 @@ $projeto = $_SESSION['projeto'];
 				if( $(this).val() ) {
 					
 					$.getJSON('../objetos/filtrar.php?search=',{postos: $(this).val(), ajax: 'true'}, function(j){
-						var options = '<option value="">Selecione o Sentido...</option>';	
-						for (var i = 0; i < j.length; i++) {
-							options += '<option value="' + j[i].id + '">' + j[i].sentido + '</option>';
-						}	
-                  
-						$('#sentidos').html(options).show();
-						
+						/* if(j == 0){
+                        $('#postos').html('<option value="">– Selecione o Posto... –</option>');
+                    }else{
+                   */
+                     var options = '<option value="">Selecione o Sentido...</option>';	
+                     for (var i = 0; i < j.length; i++) {
+                        options += '<option value="' + j[i].id + '">' + j[i].sentido + '</option>';
+                     }	
+                     
+                     $('#sentidos').html(options).show();
+                  /* } */
 					});
 				} else {
 					$('#sentidos').html('<option value="">– Selecione o Sentido... –</option>');
