@@ -22,14 +22,14 @@ $result = mysqli_query($conexao, $sql);
 </head>
 <style>
     .checkbox{
-        padding: 0px;
+        margin-top: 3px;
     }
 </style>
 
 <body>
     <section class="hero is-success is-fullheight">
         <div class="container has-text-centered">
-            <div class="column is-4 is-offset-4">
+            <div class="column is-6 is-offset-3">
                 <h3 class="title has-text-black">Tablets</h3>
                 <div class="box">
                     <div id="teste"></div>
@@ -140,11 +140,11 @@ $result = mysqli_query($conexao, $sql);
         var checa = document.getElementsByName("tablet");
         var numElementos = checa.length;
         var editarNome = document.getElementById("editarNome");
-        var editarPostos = document.getElementById("editarPostos");
+        var editarPostos = document.getElementById("editarTablets");
         for(var x=0; x<numElementos; x++){
             checa[x].onclick = function(){
                 // "input[name='Tablet']:checked" conta os checkbox checados
-                var cont = document.querySelectorAll("input[name='Tablet']:checked").length;
+                var cont = document.querySelectorAll("input[name='tablet']:checked").length;
                 // ternário que verifica se há algum checado.
                 // se não há, retorna 0 (false), logo desabilita o botão
                 var lista = $("[name= tablet]")

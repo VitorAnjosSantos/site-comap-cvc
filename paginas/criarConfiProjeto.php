@@ -12,7 +12,7 @@ include_once("../objetos/conexao_usuario.php");
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Novo Projeto</title>
+    <title>Configurações do Projeto</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="../css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/login.css">
@@ -21,19 +21,15 @@ include_once("../objetos/conexao_usuario.php");
 
     <style>
 
-            .label{
-                color:black;
-            }
-
             .distancia{
                 margin-bottom: 5px;
                 margin-right: 10px;
             }
 
-            .input{
-                width: 100px; 
+            span{
+                display: flex;
+                color:black;
             }
-
            
 
             /* onkeypress='return event.charCode >= 48 && event.charCode <= 57' */
@@ -51,18 +47,43 @@ include_once("../objetos/conexao_usuario.php");
                     <label class="has-text-black" id="msg"></label>
                     <form id="formularioCadastrar" method="POST">
                         <div id="formulario" class="container">
-                            
                             <div class='form-group0' id="div0">
-                                <label class='label' id='0' autofocus='' type='text'>
-                                <button type='button' id="campo1" class='mais-campos distancia button is-warning'> + Adicionar Sentido </button></label>
-                                <input class='posto[0] input distancia' name='posto[]' class='0' placeholder='Posto' autofocus='' type='text'>
-                                <input class='dataInicio[0] input distancia' name='dataInicio[]' placeholder='Data Inicial' autofocus='' type='text' > 
-                                <input class='dataFim[0] input distancia' name='dataFim[]' placeholder='Data Final' autofocus='' type='text' >
-                                <input class='rodovia[0] input distancia' name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'>
-                                <input class='km[0] input distancia' name='km[]' placeholder='Km' autofocus='' type='text'>
-                                <input class='sentido[0] input distancia' name='sentido[]' placeholder='Sentido' autofocus='' type='text' >   
-                            </div>
-                                                
+                                <label class='label0' id='0' autofocus='' type='text'>
+                                <button type='button' id="campo1" class='mais-campos distancia button is-warning'> + Adicionar Sentido </button>
+                                <div class="row row0">
+                                    <div class="col-sm">
+                                        <span class='label' type='text'>Posto
+                                        <input class='posto[0] input distancia' name='posto[]' class='0' placeholder='Posto' autofocus='' type='text'>
+                                        </span>
+                                    </div>
+                                    <div class="col-sm">
+                                        <span class='label' type='text'>Data/Inicial
+                                        <input class='dataInicio[0] input distancia' name='dataInicio[]' placeholder='Data Inicial' autofocus='' type='text' > 
+                                        </span>
+                                    </div>
+                                    <div class="col-sm">
+                                        <span class='label' type='text'>Data/Final
+                                        <input class='dataFim[0] input distancia' name='dataFim[]' placeholder='Data Final' autofocus='' type='text' >
+                                        </span>
+                                    </div>
+                                    <div class="col-sm">
+                                        <span class='label' type='text'>Rodovia/Local
+                                        <input class='rodovia[0] input distancia' name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'>
+                                        </span>
+                                    </div>
+                                    <div class="col-sm">
+                                        <span class='label' type='text'>KM/Referencia
+                                        <input class='km[0] input distancia' name='km[]' placeholder='KM' autofocus='' type='text'>
+                                        </span>
+                                    </div>
+                                    <div class="col-sm">
+                                        <span class='label' type='text'>Sentido/Movimento
+                                        <input class='sentido[0] input distancia' name='sentido[]' placeholder='Sentido' autofocus='' type='text' >   
+                                        </span>  
+                                    </div>
+                                </div> 
+                                </label>
+                            </div>                    
                         </div>
                         <div class="buttons is-centered" style="padding-top: 20px;">
 
@@ -86,30 +107,57 @@ include_once("../objetos/conexao_usuario.php");
             cont++;
            
             $("#formulario").append("<div class='form-group" + cont + "' id='div" + cont + "'>"+
-                                    " <label class='label' id='"+ cont +"' autofocus='' type='text'>"+
-                                    " <button type='button' id='campo" + cont + "' class='mais-campos distancia button is-success'> + Adicionar Sentido </button></label> "+
-                                    " <input class='posto["+ cont +"] input distancia' id='posto["+ cont +"]' name='posto[]' placeholder='Posto' autofocus='' type='text'>"+
-                                    " <input class='dataInicio["+ cont +"] input distancia' id='dataInicio["+ cont +"]' name='dataInicio[]' placeholder='Data Inicial' autofocus='' type='text' >"+
-                                    " <input class='dataFim["+ cont +"] input distancia' id='dataFim["+ cont +"]' name='dataFim[]' placeholder='Data Final' autofocus='' type='text' >"+
-                                    " <input class='rodovia["+ cont +"] input distancia' id='rodovia["+ cont +"]' name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'> "+
-                                    " <input class='km["+ cont +"] input distancia' id='km["+ cont +"]' name='km[]'  placeholder='Km' autofocus='' type='text'>"+
-                                    " <input class='sentido["+ cont +"] input distancia' id='sentido["+ cont +"]' name='sentido[]' placeholder='Sentido' autofocus='' type='text'>"+
+                                        " <label class='label"+ cont +"' id='"+ cont +"' autofocus='' type='text'>"+
+                                        " <button type='button' id='campo" + cont + "' class='mais-campos distancia button is-success'> + Adicionar Sentido </button></label> "+
+                                        "<div class='row row"+ cont +"'>"+
+                                            "<div class='col-sm'>"+
+                                                "<span class='label' type='text'>Posto"+
+                                                "<input class='posto["+ cont +"] input distancia' id='posto["+ cont +"]' name='posto[]' class='0' placeholder='Posto' autofocus='' type='text'>"+
+                                                "</span>"+
+                                            "</div>"+
+                                            "<div class='col-sm'>"+
+                                                "<span class='label' type='text'>Data/Inicial"+
+                                                "<input class='dataInicio["+ cont +"] input distancia' id='dataInicio["+ cont +"]' name='dataInicio[]' placeholder='Data Inicial' autofocus='' type='text' >"+
+                                                "</span>"+
+                                            "</div>"+
+                                            "<div class='col-sm'>"+
+                                                "<span class='label' type='text'>Data/Final"+
+                                                "<input class='dataFim["+ cont +"] input distancia' id='dataFim["+ cont +"]' name='dataFim[]' placeholder='Data Final' autofocus='' type='text' >"+
+                                                "</span>"+
+                                            "</div>"+
+                                            "<div class='col-sm'>"+
+                                                "<span class='label' type='text'>Rodovia/Local"+
+                                                "<input class='rodovia["+ cont +"] input distancia' id='rodovia["+ cont +"]' name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'>"+
+                                                "</span>"+
+                                            "</div>"+
+                                            "<div class='col-sm'>"+
+                                                "<span class='label' type='text'>KM/Referencia"+
+                                                "<input class='km["+ cont +"] input distancia' id='km["+ cont +"]' name='km[]' placeholder='Km' autofocus='' type='text'>"+
+                                                "</span>"+
+                                            "</div>"+
+                                            "<div class='col-sm'>"+
+                                                "<span class='label' type='text'>Sentido/Movimento"+
+                                                "<input class='sentido["+ cont +"] input distancia' id='sentido["+ cont +"]' name='sentido[]' placeholder='Sentido' autofocus='' type='text' >"+
+                                                "</span>"+
+                                            "</div>"+
+                                        "</div>"+
                                     " </div>"
             );
             
         });
         $('form').on('click', '.mais-campos', function () {
-                var button_id = $(this).parents('div').attr("class");
+                var button_id = $(this).parents('label').attr("id");
+                
                 var div_id = $(this).parents('div').attr("id");
                 var idNumero = $(this).parent().attr("id");
 
-                var posto = $('.'+button_id).find('input').eq(0);
-                var rodovia = $('.'+button_id).find('input').eq(3);
-                var km = $('.'+button_id).find('input').eq(4);
-                var dataInicio = $('.'+button_id).find('input').eq(1);
-                var dataFim = $('.'+button_id).find('input').eq(2);
+                var posto = $('.row'+button_id).find('input').eq(0);
+                var rodovia = $('.row'+button_id).find('input').eq(3);
+                var km = $('.row'+button_id).find('input').eq(4);
+                var dataInicio = $('.row'+button_id).find('input').eq(1);
+                var dataFim = $('.row'+button_id).find('input').eq(2);
                 
-
+                console.log(posto);
                 if(posto.val() == '' || rodovia.val() == '' || km.val() == '' || dataInicio.val() == '' || dataFim.val() == ''){
                     alert("Preencha todos os campos corretamente");
                 }else{
@@ -130,12 +178,18 @@ include_once("../objetos/conexao_usuario.php");
                 
 
                 // alert(posto);
-                $("." + button_id).append( "<div style='float: right'> <input value='"+inputPosto.val()+"' name='posto[]' placeholder='Posto' autofocus='' type='text' style='display: none'>"+
-                " <input value='"+inputRodovia.val()+"' style='display: none' name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'>"+
-                " <input value='"+inputKm.val()+"' style='display: none' name='km[]'  placeholder='Km' autofocus='' type='text'>"+
-                " <input value='"+inputDataInicio.val()+"' name='dataInicio[]' placeholder='Data de Inicio' autofocus='' type='text' style='display: none'>"+
-                " <input style='display: none' value='"+inputDataFim.val()+"' name='dataFim[]' placeholder='Data Final' autofocus='' type='text' >"+
-                " <input class='input distancia' name='sentido[]' style='margin-bottom: 20px; margin-top: -5px; float: right'  placeholder='Sentido' autofocus='' type='text'></div>");           
+                $(".row" + button_id).append( 
+                    "<div class='col-sm'>"+
+                        "<input value='"+inputPosto.val()+"' name='posto[]' placeholder='Posto' autofocus='' type='text' style='display: none'>"+
+                        " <input value='"+inputRodovia.val()+"' style='display: none' name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'>"+
+                        " <input value='"+inputKm.val()+"' style='display: none' name='km[]'  placeholder='Km' autofocus='' type='text'>"+
+                        " <input value='"+inputDataInicio.val()+"' name='dataInicio[]' placeholder='Data de Inicio' autofocus='' type='text' style='display: none'>"+
+                        " <input style='display: none' value='"+inputDataFim.val()+"' name='dataFim[]' placeholder='Data Final' autofocus='' type='text' >"+
+                        
+                        "<span class='label' type='text'>Sentido/Movimento"+
+                        "<input class='sentido[] input distancia' id='sentido[]' name='sentido[]' placeholder='Sentido' autofocus='' type='text' >"+
+                        "</span>"+
+                    "</div>");           
                 }
             });
         

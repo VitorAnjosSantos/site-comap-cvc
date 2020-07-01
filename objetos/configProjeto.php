@@ -46,7 +46,7 @@ if($resultado){
     ?>
      <!-- Inicio Modal -->
     <div class="modal fade" id="myModal<?php echo $id; ?>" role="dialog">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -63,9 +63,9 @@ if($resultado){
 							<tr>
 								<th>#</th>
                                 <th>Posto</th>
-                                <th>Rodovia</th>
-								<th>Km</th>
-								<th>Sentido</th>
+                                <th>Rodovia/Local</th>
+								<th>KM/Referencia</th>
+								<th>Sentido/Movimento</th>
 								<th>Data Inicial</th>
 								<th>Data Final</th>
 							</tr>

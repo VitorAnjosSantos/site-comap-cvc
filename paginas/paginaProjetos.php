@@ -22,14 +22,14 @@ $result = mysqli_query($conexao, $sql);
 </head>
 <style>
     .checkbox{
-        padding: 0px;
+        margin-top: 3px;
     }
 </style>
 
 <body>
     <section class="hero is-success is-fullheight">
             <div class="container has-text-centered">
-                <div class="column is-4 is-offset-4">
+                <div class="column is-6 is-offset-3">
                     <h3 class="title has-text-black">Projetos</h3>
                     <div class="box">
                     <div id="teste"></div>

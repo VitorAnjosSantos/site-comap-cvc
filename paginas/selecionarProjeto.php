@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include('../objetos/navegacao1.php');
+include('../objetos/navegacao2.php');
 include('../objetos/conexao_usuario.php');
 
 $sql = "SELECT * FROM tb_projetos";
@@ -19,14 +19,14 @@ $result = mysqli_query($conexao, $sql);
 </head>
 <style>
     .checkbox{
-        padding: 0px;
+        margin-top: 3px;
     }
 </style>
 
 <body>
     <section class="hero is-success is-fullheight">
             <div class="container has-text-centered">
-                <div class="column is-4 is-offset-4">
+                <div class="column is-6 is-offset-3">
                     <h3 class="title has-text-black">Selecione um projeto</h3>
                     <?php
                         if(isset($_SESSION['erro'])):
@@ -76,7 +76,7 @@ $result = mysqli_query($conexao, $sql);
                            ?>
 
                            <div style="margin-bottom: 10px ">
-                              <input type="submit" class="button btn-primary" name="novoProjeto" id="novoProjeto" value="Selecionar">
+                              <input type="submit" class="button btn-primary" name="novoProjeto" id="novoProjeto" value="Selecionar Projeto">
                            </div>
                            
                         </form> 

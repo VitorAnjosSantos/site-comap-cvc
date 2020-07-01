@@ -31,7 +31,7 @@ $projeto = $_SESSION['projeto'];
                <select name="postos" id="postos">
                         <option value="">Selecione o Posto...</option>
                         <?php
-                           $sql = "SELECT DISTINCT * FROM tb_config_projeto WHERE tb_projetos_id_projeto = {$projeto} GROUP BY posto";
+                           $sql = "SELECT * FROM tb_config_projeto WHERE tb_projetos_id_projeto = {$projeto} GROUP BY posto";
                            $result = mysqli_query($conexao,$sql);
                            while($rows = mysqli_fetch_assoc($result)){
                               echo "<option value='".$rows['id_config_projeto']."'>".$rows['posto']."</option>";
