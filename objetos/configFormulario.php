@@ -11,10 +11,11 @@ $qtdEixos = $_POST["qtdEixos"];
 $qtdSuspensos = $_POST["qtdSuspensos"];
 $seqTablet = $_POST["seqTablet"];
 $seqRelatorio = $_POST["seqRelatorio"];
+$cores = $_POST["cores"];
 
-$array = ['nome' => $nome, 'nomeRelatorio' => $nomeRelatorio,'qtdEixos' => $qtdEixos, 'qtdSuspensos' => $qtdSuspensos, 'seqTablet' => $seqTablet,'seqRelatorio' => $seqRelatorio];
+$array = ['nome' => $nome, 'nomeRelatorio' => $nomeRelatorio,'qtdEixos' => $qtdEixos, 'qtdSuspensos' => $qtdSuspensos, 'seqTablet' => $seqTablet,'seqRelatorio' => $seqRelatorio,'cores' => $cores];
 
-$res = array_map(null, $array["nome"], $array["nomeRelatorio"], $array["qtdEixos"], $array["qtdSuspensos"], $array["seqTablet"], $array["seqRelatorio"]);
+$res = array_map(null, $array["nome"], $array["nomeRelatorio"], $array["qtdEixos"], $array["qtdSuspensos"], $array["seqTablet"], $array["seqRelatorio"], $array["cores"]);
 
 
  $cont = 0;
@@ -28,9 +29,10 @@ $res = array_map(null, $array["nome"], $array["nomeRelatorio"], $array["qtdEixos
         $qtdSuspensos = $botoes[$cont][3];
         $seqTablet = $botoes[$cont][4];
         $seqRelatorio = $botoes[$cont][5];
-
+        $cores = $botoes[$cont][6];
+        var_dump($cores);
         $sql = "INSERT INTO tb_botoes (nome_botao,nome_relatorio,qtd_eixos,qtd_suspensos,seq_tablet,seq_relatorio,cor,tb_formularios_id_formulario) 
-                    VALUES ('{$nome}', '{$nomeRelatorio}', '{$qtdEixos}', '{$qtdSuspensos}', '{$seqTablet}', '{$seqRelatorio}',null,{$id})";
+                    VALUES ('{$nome}', '{$nomeRelatorio}', '{$qtdEixos}', '{$qtdSuspensos}', '{$seqTablet}', '{$seqRelatorio}','{$cores}',{$id})";
         $resultado = mysqli_query($conexao,$sql);
         $cont++;
  }
@@ -70,6 +72,7 @@ if($resultado){
                                         <th>Qtd/Suspensos</th>
                                         <th>Seq/Tablet</th>
                                         <th>Seq/Relatorio</th>
+                                        <th>Cor/Botão</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -83,6 +86,7 @@ if($resultado){
                                             <td><?php echo $values['qtd_suspensos']; ?></td>
                                             <td><?php echo $values['seq_tablet']; ?></td>
                                             <td><?php echo $values['seq_relatorio']; ?></td>
+                                            <td><?php echo $values['cor']; ?></td>
                                         </tr>
                                     <?php } ?>
                                                 

@@ -73,11 +73,28 @@ include_once("../objetos/conexao_usuario.php");
                                     <span class='label' type='text'>Seq/Tablet
                                     <input class='seqTablet[0] input distancia' name='seqTablet[]' placeholder='Seq/Tablet' autofocus='' type='text'>
                                     </span>
-                                </div><div class="col-sm">
+                                </div>
+                                <div class="col-sm">
                                     <span class='label' type='text'>Seq/Relatorio
                                     <input class='seqRelatorio[0] input distancia' name='seqRelatorio[]' placeholder='Seq/Relatorio' autofocus='' type='text' >   
                                     </span>  
                                 </div>
+                                <div class="col-sm">
+                                    <span class='label' type='text'>Cor do Botão
+                                    <select class="cores[0]" name="cores[0]" id="cores[0]">
+                                        <option value="">Selecione...</option>
+                                        <option value="azul">Azul</option>
+                                        <option value="vermelho">Vermelho</option>
+                                        <option value="laranja">Laranja</option>
+                                        <option value="verde">Verde</option>
+                                        <option value="roxo">Roxo</option>
+                                        <option value="light">Branco</option>
+                                        <option value="dark">Preto</option>
+                                     </select>   
+                                    </span>  
+                                </div>
+                                
+
                             </div>                             
                         </div>                              
                         </div>
@@ -133,6 +150,20 @@ include_once("../objetos/conexao_usuario.php");
                                                 "<span class='label' type='text'>Seq/Relatorio"+
                                                 "<input class='seqRelatorio["+ cont +"] input distancia' id='seqRelatorio["+ cont +"]' name='seqRelatorio[]' placeholder='Seq/Relatorio' autofocus='' type='text' >"+
                                                 "</span>"+
+                                            "</div>"+
+                                            "<div class='col-sm'>"+
+                                                "<span class='label' type='text'>Cor do Botão"+
+                                                "<select class='["+ cont +"]' name='cores["+ cont +"]' id='cores["+ cont +"]'>"+
+                                                    "<option value=''>Selecione...</option>"+
+                                                    "<option value='azul'>Azul</option>"+
+                                                    "<option value='vermelho'>Vermelho</option>"+
+                                                    "<option value='laranja'>Laranja</option>"+
+                                                    "<option value='verde'>Verde</option>"+
+                                                    "<option value='roxo'>Roxo</option>"+
+                                                    "<option value='light'>Branco</option>"+
+                                                    "<option value='dark'>Preto</option>"+
+                                                "</select>"+   
+                                                "</span>"+  
                                             "</div>"+
                                         "</div>"+
                                     " </div>"

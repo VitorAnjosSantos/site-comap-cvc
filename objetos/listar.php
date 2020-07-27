@@ -46,7 +46,7 @@ if($result){
     foreach($result as $value){
         $contagem = json_decode($value['contagem'], true);
         $teste = $contagem;			
-        
+
         foreach($teste as $key ) 
         {
             
@@ -55,7 +55,7 @@ if($result){
             $date = $contagem[0]['date'];
             $time = $contagem[0]['time'];
 
-            $dateCorrigida = str_replace("/","-", $date );
+            $dateCorrigida = 
             $timeCorrigido = str_replace(":","-", $time );
             
             $data = $dateCorrigida;
@@ -65,7 +65,7 @@ if($result){
             $sentido = $value["sentido"];
 
             $nome = $posto.'_'.$sentido.'_'.$data.'_'.$hora.'_'.$idDevice.".xls";
-            $nomeCompleto[$count] = $nome;
+            $nomeCompleto[$count] = str_replace("/","-", $nome );
         }
         
         $count++;

@@ -103,7 +103,7 @@ $result = mysqli_query($conexao, $sql);
                                                 </div>
                                             
                                                 <select name="projetos" id="projetos">
-                                                    <option value="">Selecione o Posto...</option>
+                                                    <option value="">Selecione o Projeto...</option>
                                                     <?php
                                                     $sql = "SELECT * FROM tb_projetos";
                                                     $result = mysqli_query($conexao,$sql);
@@ -122,6 +122,22 @@ $result = mysqli_query($conexao, $sql);
                                                 <select name="sentidos" id="sentidos">
                                                     <option value="">Selecione o Sentido...</option>                       
                                                 </select>
+
+                                                <select name="teclados" id="teclados">
+                                                    <option value="">Selecione o Teclado...</option>
+                                                    <?php
+                                                    $sql = "SELECT * FROM tb_formularios";
+                                                    $result = mysqli_query($conexao,$sql);
+                                                    while($rows = mysqli_fetch_assoc($result)){
+                                                        echo "<option value='".$rows['id_formulario']."'>".$rows['nome']."</option>";
+                                                        
+                                                    }
+                                                    
+                                                    ?>
+                                                    
+                                                </select>
+
+
                                             </div>
 
                                             <button type="submit" class="button is-block is-link is-large is-fullwidth">Criar</button>
@@ -179,7 +195,7 @@ $result = mysqli_query($conexao, $sql);
                         var options = '<option value="">Selecione o Posto...</option>';
                         
                         for (var i = 0; i < j.length; i++) {
-                            options += '<option value="' + j[i].id + '">' + j[i].posto + '</option>';
+                            options += '<option value="' + j[i].posto + '">' + j[i].posto + '</option>';
                         }	
                     
                         $('#postos').html(options).show();

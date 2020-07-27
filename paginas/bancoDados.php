@@ -34,7 +34,7 @@ $projeto = $_SESSION['projeto'];
                            $sql = "SELECT * FROM tb_config_projeto WHERE tb_projetos_id_projeto = {$projeto} GROUP BY posto";
                            $result = mysqli_query($conexao,$sql);
                            while($rows = mysqli_fetch_assoc($result)){
-                              echo "<option value='".$rows['id_config_projeto']."'>".$rows['posto']."</option>";
+                              echo "<option value='".$rows['posto']."'>".$rows['posto']."</option>";
                               
                            }
                         

@@ -57,15 +57,15 @@ include_once("../objetos/conexao_usuario.php");
                                         </span>
                                     </div>
                                     <div class="col-sm">
-                                        <span class='label' type='text'>Data/Inicial
-                                        <input class='dataInicio[0] input distancia' name='dataInicio[]' placeholder='Data Inicial' autofocus='' type='text' > 
+                                        <span class='label' type='text'>Periodo
+                                        <input class='periodo[0] input distancia' name='periodo[]' placeholder='Data Inicial' autofocus='' type='text' > 
                                         </span>
                                     </div>
-                                    <div class="col-sm">
+                                    <!-- <div class="col-sm">
                                         <span class='label' type='text'>Data/Final
                                         <input class='dataFim[0] input distancia' name='dataFim[]' placeholder='Data Final' autofocus='' type='text' >
                                         </span>
-                                    </div>
+                                    </div> -->
                                     <div class="col-sm">
                                         <span class='label' type='text'>Rodovia/Local
                                         <input class='rodovia[0] input distancia' name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'>
@@ -116,15 +116,15 @@ include_once("../objetos/conexao_usuario.php");
                                                 "</span>"+
                                             "</div>"+
                                             "<div class='col-sm'>"+
-                                                "<span class='label' type='text'>Data/Inicial"+
-                                                "<input class='dataInicio["+ cont +"] input distancia' id='dataInicio["+ cont +"]' name='dataInicio[]' placeholder='Data Inicial' autofocus='' type='text' >"+
+                                                "<span class='label' type='text'>Periodo"+
+                                                "<input class='periodo["+ cont +"] input distancia' id='periodo["+ cont +"]' name='periodo[]' placeholder='Periodo' autofocus='' type='text' >"+
                                                 "</span>"+
                                             "</div>"+
-                                            "<div class='col-sm'>"+
+                                            /* "<div class='col-sm'>"+
                                                 "<span class='label' type='text'>Data/Final"+
                                                 "<input class='dataFim["+ cont +"] input distancia' id='dataFim["+ cont +"]' name='dataFim[]' placeholder='Data Final' autofocus='' type='text' >"+
                                                 "</span>"+
-                                            "</div>"+
+                                            "</div>"+ */
                                             "<div class='col-sm'>"+
                                                 "<span class='label' type='text'>Rodovia/Local"+
                                                 "<input class='rodovia["+ cont +"] input distancia' id='rodovia["+ cont +"]' name='rodovia[]' placeholder='Rodovía' autofocus='' type='text'>"+

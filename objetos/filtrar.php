@@ -8,7 +8,7 @@ include("./conexao_usuario.php");
 $posto = $_REQUEST['postos'];
 $arraySentido = [];
 
-$result_sub_cat = "SELECT * FROM tb_config_projeto WHERE id_config_projeto= '{$posto}' ORDER BY sentido";
+$result_sub_cat = "SELECT * FROM tb_config_projeto WHERE posto = '{$posto}' ORDER BY sentido";
 $resultado_sub_cat = mysqli_query($conexao, $result_sub_cat);
 $rows = mysqli_num_rows($resultado_sub_cat);
 
