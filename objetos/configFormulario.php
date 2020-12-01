@@ -30,7 +30,7 @@ $res = array_map(null, $array["nome"], $array["nomeRelatorio"], $array["qtdEixos
         $seqTablet = $botoes[$cont][4];
         $seqRelatorio = $botoes[$cont][5];
         $cores = $botoes[$cont][6];
-        var_dump($cores);
+        //var_dump($cores);
         $sql = "INSERT INTO tb_botoes (nome_botao,nome_relatorio,qtd_eixos,qtd_suspensos,seq_tablet,seq_relatorio,cor,tb_formularios_id_formulario) 
                     VALUES ('{$nome}', '{$nomeRelatorio}', '{$qtdEixos}', '{$qtdSuspensos}', '{$seqTablet}', '{$seqRelatorio}','{$cores}',{$id})";
         $resultado = mysqli_query($conexao,$sql);

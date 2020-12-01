@@ -86,8 +86,14 @@
 				foreach($teste as $key ) 
 				{
 					
-					unset($key['latitude'],$key['longitude'],$key['date'],$key['time']);
-
+					if(isset($key['latitude']) && isset($key['longitude'])){
+						unset($key['latitude'],$key['longitude'],$key['date'],$key['time']);
+					}else{
+						unset($key['date'],$key['time']);
+						$contagem[$count]['latitude'] = "";
+						$contagem[$count]['longitude'] = "";
+					}
+					
 					$latitude = $contagem[$count]['latitude'];
 					$longitude = $contagem[$count]['longitude'];
 					$date = $contagem[$count]['date'];
