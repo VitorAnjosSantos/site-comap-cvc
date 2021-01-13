@@ -52,7 +52,7 @@ $result = mysqli_query($conexao, $sql);
                             <div class="row">
 
                                 <div class="col checkbox">
-                                    <input class="checkbox" name="tablet" id="tablet['<?php $values['id_tablet']?>']" type="radio" value="<?php echo $values['id_tablet'] ?>">
+                                    <input class="checkbox" name="tablet" id="tablet['<?php echo $values['id_tablet']?>']" type="radio" value="<?php echo $values['id_tablet'] ?>">
                                 </div>
                                 <div class="col">
                                     <h4><?php echo $values['id_tablet']; ?></h4>
@@ -155,11 +155,10 @@ $result = mysqli_query($conexao, $sql);
     <script>
         var checa = document.getElementsByName("tablet");
         var numElementos = checa.length;
-        var editarNome = document.getElementById("editarNome");
-        var editarPostos = document.getElementById("editarTablets");
+        var editarTablet = document.getElementById("editarTablet");
         for(var x=0; x<numElementos; x++){
             checa[x].onclick = function(){
-                // "input[name='Tablet']:checked" conta os checkbox checados
+                // "input[name='projeto']:checked" conta os checkbox checados
                 var cont = document.querySelectorAll("input[name='tablet']:checked").length;
                 // ternário que verifica se há algum checado.
                 // se não há, retorna 0 (false), logo desabilita o botão
@@ -171,7 +170,7 @@ $result = mysqli_query($conexao, $sql);
                 var json = {id: lista[0]};
                 var dados = json;
                 $.ajax({
-                url: '../objetos/modalEditarNomeTablet.php',
+                url: '../objetos/botoesEditarTablets.php',
                 type: 'post',
                 datatype: 'json',
                 data: dados,

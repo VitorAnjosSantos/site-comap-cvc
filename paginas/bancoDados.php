@@ -134,7 +134,30 @@ $projeto = $_SESSION['projeto'];
             $('.gerar').parents('a').remove();
             $('#teste').children('span').remove();
             $('#teste').children('br').remove();
+            /* let posto = $('#postos').val();
+            let sentido = $('#sentidos').val(); */
 
+            $.ajax({
+               url: '../objetos/pegarUsuarios.php',
+               type: 'post',
+               datatype: 'json',
+               data: dados,
+               success: function(retorna){
+                  
+                     let r = JSON.stringify(retorna);
+                     let usuarios = JSON.parse(r);
+
+                     $.each(usuarios, function( index, value ) {
+                     alert( index + ": " + value );
+                     });
+                     
+                     console.log(usuarios[0]);
+                  
+                  
+                  
+                  //console.log(retorna);
+               }
+            })
 
             $.ajax({
                url: '../objetos/listar.php',

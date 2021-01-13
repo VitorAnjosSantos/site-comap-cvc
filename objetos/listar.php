@@ -55,7 +55,7 @@ if($result){
             $date = $contagem[0]['date'];
             $time = $contagem[0]['time'];
 
-            $dateCorrigida = 
+            $dateCorrigida = str_replace("/","-", $date );
             $timeCorrigido = str_replace(":","-", $time );
             
             $data = $dateCorrigida;
