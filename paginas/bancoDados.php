@@ -128,6 +128,8 @@ $projeto = $_SESSION['projeto'];
       $('#filtrar').click(function(){
             event.preventDefault();
             var dados = $("#filtro").serialize();
+            let array= [];
+            let arrayIds = [];
             /*  $.post("../objetos/listar.php", dados, function (retorna){
                $('#teste').html(retorna);
             }); */
@@ -146,12 +148,35 @@ $projeto = $_SESSION['projeto'];
                   
                      let r = JSON.stringify(retorna);
                      let usuarios = JSON.parse(r);
+                     let i = 0;
+
+                     console.log(usuarios);
 
                      $.each(usuarios, function( index, value ) {
-                     alert( index + ": " + value );
+                     
+                     array.push(value);
+                     arrayIds.push(array[i]["tb_usuarios_id_usuario"]);
+                     console.log(arrayIds[i]);
+                     i++;
+
                      });
                      
-                     console.log(usuarios[0]);
+                     $.ajax({
+                        url: '../objetos/listar.php',
+                        type: 'post',
+                        datatype: 'json',
+                        data: dados,
+                        success: function(retorna){
+                           let i = 0;
+                           $.each(arrayIds, function( index, value ) {
+                              
+                              $('#teste').append("<br><span>"+retorna[i]+"</span><a href='../objetos/gerarPlanilha.php?id="+value+"'><input style='margin-left: 10px; margin-bottom: 5px; ' name='id["+i+"]' id='id["+i+"]' type='button' class='gerar button is-success' value='Gerar Excel'></a>");
+                              i++;
+                           });
+                        }   
+                           //console.log(retorna);
+                        
+                     })
                   
                   
                   
@@ -159,22 +184,7 @@ $projeto = $_SESSION['projeto'];
                }
             })
 
-            $.ajax({
-               url: '../objetos/listar.php',
-               type: 'post',
-               datatype: 'json',
-               data: dados,
-               success: function(retorna){
-                  let id = 1;
-                  for(let i = 0; i < retorna.length; i++){
-                     
-                     $('#teste').append("<br><span>"+retorna[i]+"</span><a href='../objetos/gerarPlanilha.php?id="+id+"'><input style='margin-left: 10px; margin-bottom: 5px; ' name='id["+id+"]' id='id["+id+"]' type='button' class='gerar button is-success' value='Gerar Excel'></a>");
-                     id++;
-                  }
-                  
-                  //console.log(retorna);
-               }
-            })
+            
       });
 
       /* $('form').on('click', '.gerar', function () {

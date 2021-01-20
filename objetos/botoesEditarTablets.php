@@ -1,14 +1,12 @@
 <?php
 session_start();
-header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: Content-Type");
-header('Content-Type: application/json');
 include('./conexao_usuario.php');
-$sql = "SELECT * FROM tb_tablets";
-$result = mysqli_query($conexao, $sql);
-/* var_dump($_POST['id']); */
+$id = $_POST['id'];
 
- echo json_encode('
+?>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
  <div class="modal fade" id="modaleditarTablet" role="dialog">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
@@ -21,7 +19,7 @@ $result = mysqli_query($conexao, $sql);
                     <h3 class="title has-text-grey">Criar Novo Tablet</h3>
 
                         <div class="box">
-                            <form action="../objetos/novoTablet.php" method="POST">
+                            <form action="../objetos/editarTablets.php" method="POST">
                                 <div class="field">
                                     <div class="control">
                                         <input name="nome" class="input is-large" placeholder="Novo Tablet" autofocus="" type="text">
@@ -33,11 +31,12 @@ $result = mysqli_query($conexao, $sql);
                                 
                                     <select name="projetos" id="projetos">
                                         <option value="">Selecione o Projeto...</option>
-                                        
+                                        <?php
                                         $sql = "SELECT * FROM tb_projetos";
                                         $result = mysqli_query($conexao,$sql);
                                         while($rows = mysqli_fetch_assoc($result)){
-                                        echo "<option value=.$rows["id_projeto"].>.$rows["nome"].</option>";
+                                            echo "<option value=".$rows["id_projeto"].">".$rows["nome"]."</option>";
+
                                         }
                                         
                                         ?>
@@ -57,7 +56,7 @@ $result = mysqli_query($conexao, $sql);
                                         $sql = "SELECT * FROM tb_formularios";
                                         $result = mysqli_query($conexao,$sql);
                                         while($rows = mysqli_fetch_assoc($result)){
-                                            echo "<option value=.$rows["id_formulario"].>.$rows["nome"].</option>";
+                                            echo "<option value=".$rows["id_formulario"].">".$rows["nome"]."</option>";
                                             
                                         }
                                         
@@ -67,7 +66,7 @@ $result = mysqli_query($conexao, $sql);
 
 
                                 </div>
-                                <input type="hidden" name="tablet['.$_POST['id'].']" name="tablet['.$_POST['id'].']">
+                                <input type="hidden" id='tablet[<?php echo $id; ?>]' name='tablet[<?php echo $id; ?>]'>
                                 <button type="submit" class="button is-block is-link is-large is-fullwidth">Criar</button>
                             </form>  
                         </div>
@@ -80,10 +79,58 @@ $result = mysqli_query($conexao, $sql);
 
     <input  type="button" class="button btn-warning " name="editarTablet" id="editarTablet" value="Editar Tablet" data-toggle="modal" data-target="#modaleditarTablet"></input>
 </div>                           
-');
+
+<script>
+
+        $(function(){
+			$('#projetos').change(function(){
+				if( $(this).val() ) {
+                 $.getJSON('../objetos/filtrarPostos.php?search=',{projetos: $(this).val(), ajax: 'true'}, function(j){
+                    if(j == 0){
+                        $('#postos').html('<option value="">– Selecione o Posto... –</option>');
+                    }else{
+
+                    
+                        var options = '<option value="">Selecione o Posto...</option>';
+                        
+                        for (var i = 0; i < j.length; i++) {
+                            options += '<option value="' + j[i].posto + '">' + j[i].posto + '</option>';
+                        }	
+                    
+                        $('#postos').html(options).show();
+                                
+                        
+                    }
+                 });
+				} else {
+					$('#postos').html('<option value="">– Selecione o Posto... –</option>');
+				}
+			});
+		});
+
+        $(function(){
+			$('#postos').change(function(){
+				if( $(this).val() ) {
+					
+					$.getJSON('../objetos/filtrar.php?search=',{postos: $(this).val(), ajax: 'true'}, function(j){
+						var options = '<option value="">Selecione o Sentido...</option>';	
+						for (var i = 0; i < j.length; i++) {
+							options += '<option value="' + j[i].id + '">' + j[i].sentido + '</option>';
+						}	
+                  
+						$('#sentidos').html(options).show();
+						
+					});
+				} else {
+					$('#sentidos').html('<option value="">– Selecione o Sentido... –</option>');
+				}
+			});
+		});
+       
+
+    </script>
 
 
-?>
 
 
 

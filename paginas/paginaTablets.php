@@ -108,7 +108,7 @@ $result = mysqli_query($conexao, $sql);
                                                     $sql = "SELECT * FROM tb_projetos";
                                                     $result = mysqli_query($conexao,$sql);
                                                     while($rows = mysqli_fetch_assoc($result)){
-                                                        echo "<option value='".$rows['id_projeto']."'>".$rows['nome']."</option>";
+                                                        echo "<option value=".$rows["id_projeto"].">".$rows["nome"]."</option>";
                                                         
                                                     }
                                                     
@@ -129,7 +129,7 @@ $result = mysqli_query($conexao, $sql);
                                                     $sql = "SELECT * FROM tb_formularios";
                                                     $result = mysqli_query($conexao,$sql);
                                                     while($rows = mysqli_fetch_assoc($result)){
-                                                        echo "<option value='".$rows['id_formulario']."'>".$rows['nome']."</option>";
+                                                        echo "<option value=".$rows["id_formulario"].">".$rows["nome"]."</option>";
                                                         
                                                     }
                                                     
@@ -169,13 +169,16 @@ $result = mysqli_query($conexao, $sql);
                             });
                 var json = {id: lista[0]};
                 var dados = json;
+                
                 $.ajax({
                 url: '../objetos/botoesEditarTablets.php',
                 type: 'post',
                 datatype: 'json',
                 data: dados,
-                success: function(retorna){
-                    $("#botoes").append(retorna);
+                success: function(html){
+                    /* var resposta = JSON.parse(JSON.stringify(retorna)); */
+                    $("#botoes").append(html);
+                    console.log(html);
                 }
                 });
 

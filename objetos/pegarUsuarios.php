@@ -12,12 +12,14 @@ $sql = "SELECT tb_usuarios_id_usuario FROM tb_veiculos v
         WHERE c.posto = '{$posto}' AND c.id_config_projeto = {$sentido};";
 
 $result = mysqli_query($conexao,$sql);
-
+$array = [];
 foreach($result as $value){
-    echo json_encode($value);
+    array_push($array,$value);
 
     
 }
+
+echo json_encode($array);
 
 ?>
             
