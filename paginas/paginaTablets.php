@@ -157,7 +157,7 @@ $result = mysqli_query($conexao, $sql);
         var numElementos = checa.length;
         var editarTablet = document.getElementById("editarTablet");
         for(var x=0; x<numElementos; x++){
-            checa[x].onclick = function(){
+            checa[x].onchange = function(){
                 // "input[name='projeto']:checked" conta os checkbox checados
                 var cont = document.querySelectorAll("input[name='tablet']:checked").length;
                 // ternário que verifica se há algum checado.
@@ -177,7 +177,9 @@ $result = mysqli_query($conexao, $sql);
                 data: dados,
                 success: function(html){
                     /* var resposta = JSON.parse(JSON.stringify(retorna)); */
+                    $("#botoes").empty();
                     $("#botoes").append(html);
+                    
                     console.log(html);
                 }
                 });

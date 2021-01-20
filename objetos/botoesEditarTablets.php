@@ -67,7 +67,7 @@ $id = $_POST['id'];
 
                                 </div>
                                 <input type="hidden" id='tablet[<?php echo $id; ?>]' name='tablet[<?php echo $id; ?>]'>
-                                <button type="submit" class="button is-block is-link is-large is-fullwidth">Criar</button>
+                                <button type="submit" class="button is-block is-link is-large is-fullwidth">Editar</button>
                             </form>  
                         </div>
                     </div>
