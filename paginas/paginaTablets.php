@@ -92,56 +92,70 @@ $result = mysqli_query($conexao, $sql);
                                 <h3 class="title has-text-grey">Criar Novo Tablet</h3>
 
                                     <div class="box">
-                                        <form action="../objetos/novoTablet.php" method="POST">
-                                            <div class="field">
-                                                <div class="control">
-                                                    <input name="nome" class="input is-large" placeholder="Novo Tablet" autofocus="" type="text">
-                                                </div>
+                                        
+                                        <form id="formularioCadastrar" action="../objetos/novoTablet.php" method="POST">
+                                        
+                                        <div id="formulario" class="container">
+                                            <div class='form-group0' id="div0">
+                                                <div class="field">
+                                                    <div class="control">
+                                                        <input name="nome" class="input is-large" placeholder="Novo Tablet" autofocus="" type="text">
+                                                    </div>
+                                                    
+                                                    <div class="control">
+                                                        <input name="senha" class="input is-large" type="password" placeholder="Senha do Tablet">
+                                                    </div>
                                                 
-                                                <div class="control">
-                                                    <input name="senha" class="input is-large" type="password" placeholder="Senha do Tablet">
+                                                    <select class="projetos[0]" id="projetos0" name="projetos[]" >
+                                                        <option value="">Selecione o Projeto...</option>
+                                                        <?php
+                                                        $sql = "SELECT * FROM tb_projetos";
+                                                        $result = mysqli_query($conexao,$sql);
+                                                        while($rows = mysqli_fetch_assoc($result)){
+                                                            echo "<option value=".$rows["id_projeto"].">".$rows["nome"]."</option>";
+                                                            
+                                                        }
+                                                        
+                                                        ?>
+                                                        
+                                                    </select>
+
+                                                    <select class="postos[0]" id="postos0" name="postos[]" >
+                                                        <option value="">Selecione o Posto...</option>                       
+                                                    </select>
+                                                    <select class="sentidos[0]" id="sentidos0" name="sentidos[]" >
+                                                        <option value="">Selecione o Sentido...</option>                       
+                                                    </select>
+
+                                                    <select class="sentidos[0]" id="teclados[0]" name="teclados[]" >
+                                                        <option value="">Selecione o Teclado...</option>
+                                                        <?php
+                                                        $sql = "SELECT * FROM tb_formularios";
+                                                        $result = mysqli_query($conexao,$sql);
+                                                        while($rows = mysqli_fetch_assoc($result)){
+                                                            echo "<option value=".$rows["id_formulario"].">".$rows["nome"]."</option>";
+                                                            
+                                                        }
+                                                        
+                                                        ?>
+                                                        
+                                                    </select>
+                                                    </div>
                                                 </div>
-                                            
-                                                <select name="projetos" id="projetos">
-                                                    <option value="">Selecione o Projeto...</option>
-                                                    <?php
-                                                    $sql = "SELECT * FROM tb_projetos";
-                                                    $result = mysqli_query($conexao,$sql);
-                                                    while($rows = mysqli_fetch_assoc($result)){
-                                                        echo "<option value=".$rows["id_projeto"].">".$rows["nome"]."</option>";
-                                                        
-                                                    }
-                                                    
-                                                    ?>
-                                                    
-                                                </select>
 
-                                                <select name="postos" id="postos">
-                                                    <option value="">Selecione o Posto...</option>                       
-                                                </select>
-                                                <select name="sentidos" id="sentidos">
-                                                    <option value="">Selecione o Sentido...</option>                       
-                                                </select>
+                                        </div>
+                                                    <div class="buttons is-centered" style="padding-top: 20px;">
 
-                                                <select name="teclados" id="teclados">
-                                                    <option value="">Selecione o Teclado...</option>
-                                                    <?php
-                                                    $sql = "SELECT * FROM tb_formularios";
-                                                    $result = mysqli_query($conexao,$sql);
-                                                    while($rows = mysqli_fetch_assoc($result)){
-                                                        echo "<option value=".$rows["id_formulario"].">".$rows["nome"]."</option>";
-                                                        
-                                                    }
+                                                        <button class="button btn-success" type="button" id="add-projeto">+ Adicionar Projeto </button>
+
                                                     
-                                                    ?>
-                                                    
-                                                </select>
-
-
                                             </div>
+                                        
 
                                             <button type="submit" class="button is-block is-link is-large is-fullwidth">Criar</button>
-                                        </form>  
+                                        
+                                        </form>
+                                         
                                     </div>
                                 </div>
                             </div>
@@ -153,6 +167,54 @@ $result = mysqli_query($conexao, $sql);
     </section>
 
     <script>
+
+        var campo = 0;
+            
+            $("#add-projeto").click(function () {
+                campo++;
+                
+               
+                $("#formulario").append("<br><div class='form-group" + campo + "' id='div" + campo + "'>"+
+                                        "<div class='field'>"+
+                                            "<select class='projetos[" + campo + "]' id='projetos" + campo + "' name='projetos[]' >"+
+                                                "<option value=''>Selecione o Projeto...</option>"+
+                                                "<?php
+                                                $sql = 'SELECT * FROM tb_projetos';
+                                                $result = mysqli_query($conexao,$sql);
+                                                while($rows = mysqli_fetch_assoc($result)){
+                                                    echo '<option value='.$rows['id_projeto'].'>'.$rows['nome'].'</option>';
+                                                    
+                                                }
+                                                
+                                                ?>"
+                                                
+                                            +"</select>"+
+
+                                            "<select class='postos[" + campo + "]' id='postos" + campo + "' name='postos[]' >"+
+                                                "<option value=''>Selecione o Posto...</option>"+                 
+                                            "</select>"+
+                                            "<select class='sentidos[" + campo + "]' id='sentidos" + campo + "' name='sentidos[]'>"+
+                                                "<option value=''>Selecione o Sentido...</option>"+                       
+                                            "</select>"+
+                                            "<select class='teclados[" + campo + "]' id='teclados[" + campo + "]' name='teclados[]' >"+
+                                                "<option value=''>Selecione o Teclado...</option>"+
+                                                "<?php
+                                                $sql = 'SELECT * FROM tb_formularios';
+                                                $result = mysqli_query($conexao,$sql);
+                                                while($rows = mysqli_fetch_assoc($result)){
+                                                    echo '<option value='.$rows['id_formulario'].'>'.$rows['nome'].'</option>';
+                                                    
+                                                }
+                                                
+                                                ?>"
+                                                
+                                            +"</select>"+
+
+                                        "</div><br>"
+                );
+                
+            });
+
         var checa = document.getElementsByName("tablet");
         var numElementos = checa.length;
         var editarTablet = document.getElementById("editarTablet");
@@ -188,33 +250,38 @@ $result = mysqli_query($conexao, $sql);
         }
 
         $(function(){
-			$('#projetos').change(function(){
+			$(document).on('change', '[name^="projetos"]',function(){
+            
+                
+                var postos = $(this).next().attr('id');
+                
 				if( $(this).val() ) {
                  $.getJSON('../objetos/filtrarPostos.php?search=',{projetos: $(this).val(), ajax: 'true'}, function(j){
                     if(j == 0){
-                        $('#postos').html('<option value="">– Selecione o Posto... –</option>');
+                        $("#"+postos+"").html('<option value="">– Selecione o Posto... –</option>');
                     }else{
-
-                    
+                        
                         var options = '<option value="">Selecione o Posto...</option>';
                         
                         for (var i = 0; i < j.length; i++) {
                             options += '<option value="' + j[i].posto + '">' + j[i].posto + '</option>';
                         }	
                     
-                        $('#postos').html(options).show();
+                        $("#"+postos+"").html(options).show();
                                 
                         
                     }
                  });
 				} else {
-					$('#postos').html('<option value="">– Selecione o Posto... –</option>');
+					$("#"+postos+"").html('<option value="">– Selecione o Posto... –</option>');
 				}
 			});
 		});
 
         $(function(){
-			$('#postos').change(function(){
+			$(document).on('change', '[name^="postos"]',function(){
+                var sentidos = $(this).next().attr('id');
+
 				if( $(this).val() ) {
 					
 					$.getJSON('../objetos/filtrar.php?search=',{postos: $(this).val(), ajax: 'true'}, function(j){
@@ -223,11 +290,11 @@ $result = mysqli_query($conexao, $sql);
 							options += '<option value="' + j[i].id + '">' + j[i].sentido + '</option>';
 						}	
                   
-						$('#sentidos').html(options).show();
+						$("#"+sentidos+"").html(options).show();
 						
 					});
 				} else {
-					$('#sentidos').html('<option value="">– Selecione o Sentido... –</option>');
+					$("#"+sentidos+"").html('<option value="">– Selecione o Sentido... –</option>');
 				}
 			});
 		});
